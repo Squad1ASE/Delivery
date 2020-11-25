@@ -1,0 +1,25 @@
+version: "3"
+services:
+    flask-reservation:
+      build: reservation
+      env_file:
+        - variables.env
+      environment: 
+        - DATABASE_RESERVATION_URI=sqlite:///reservation.db
+      command: pytest tests --cov=. --cov-report term-missing
+      
+    flask-restaurant:
+      build: restaurant
+      env_file:
+        - variables.env
+      environment: 
+        - DATABASE_RESTAURANT_URI=sqlite:///restaurant.db
+      command: pytest tests --cov=. --cov-report term-missing
+      
+    flask-user:
+      build: user
+      env_file:
+        - variables.env
+      environment: 
+        - DATABASE_USER_URI=sqlite:///user.db
+      command: pytest tests --cov=. --cov-report term-missing
